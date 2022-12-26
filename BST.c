@@ -3,7 +3,7 @@
 #define root (*root)
 
 typedef struct listNode* listPointer;
-typedef struct listNode {								//structure of linked list  
+typedef struct listNode {								
 	int data;
 	listPointer left_node;
 	listPointer right_node;
@@ -22,7 +22,7 @@ int getLeftNodeSize(listPointer root);
 int main(void) {
 
 	listPointer first = NULL;
-	FILE* fp = fopen("txt.txt", "r");					//read txt.txt 
+	FILE* fp = fopen("txt.txt", "r");					 
 	int numElement = 0;
 	char str[4];
 	int i = 0;
@@ -30,7 +30,7 @@ int main(void) {
 
 		int data = atoi(str);
 		if (Find(first, data)) {
-			printf("Element already there.\n");			//insert elements sequently 
+			printf("Element already there.\n");			 
 		}
 		else {
 			Insert(&first, data);
@@ -38,7 +38,7 @@ int main(void) {
 		}
 	}
 
-	printf("\nInorder Traversal:\n");    				//print rusult of inorder traversal 
+	printf("\nInorder Traversal:\n");    				 
 	inorder_traversal(first);
 	fclose(fp);
 	do {
@@ -50,7 +50,7 @@ int main(void) {
 
 		switch (choice) {
 		case 1:
-			printf("Enter value of key> ");					//insert particular element
+			printf("Enter value of key> ");					
 			scanf("%d", &key);
 			if (Find(first, key)) {
 				printf("Element already there.\n");
@@ -61,7 +61,7 @@ int main(void) {
 
 			break;
 		case 2:
-			printf("Enter value of key> ");					//delete particular element  
+			printf("Enter value of key> ");					 
 			scanf("%d", &key);
 			if (Find(first, key)) {
 				Delete(&first, key);
@@ -69,7 +69,7 @@ int main(void) {
 
 			break;
 		case 3:
-			printf("Enter value of key> ");					//find particular element 
+			printf("Enter value of key> ");					
 			scanf("%d", &key);
 			if (Find(first, key)) {
 				printf("Element is there.\n");
@@ -80,7 +80,7 @@ int main(void) {
 
 			break;
 		case 4:
-			printf("Enter value of N> ");					//find the Nth element 
+			printf("Enter value of N> ");					 
 			scanf("%d", &key);
 			if (key > numElement) {
 				printf("Element not there.\n");
@@ -90,14 +90,14 @@ int main(void) {
 			}
 			break;
 		case 5:
-			break;											//smallest to largest is equivelent to inorder traversal
+			break;											
 		case 6:
-			exit(0);										//exit
+			exit(0);										
 		default:
-			printf("Invalid choice\n");						//wrong choice 
+			printf("Invalid choice\n");						
 		}
 		printf("\nInorder Traversal:\n");
-		inorder_traversal(first);							//print rusult of inorder traversal 
+		inorder_traversal(first);							
 	} while (1);
 
 
@@ -118,18 +118,18 @@ listPointer Insert(listPointer root, int data) {
 	if (root == NULL) {
 
 		if (!((root) = malloc(sizeof(*root)))) {
-			fprintf("stderr", "Insufficient memory");			//Insufficient memory
+			fprintf("stderr", "Insufficient memory");			
 			exit(EXIT_FAILURE);
 		}
 
-		root->data = data;											//assign data to element 
+		root->data = data;											 
 		printf("Insert %d.\n", data);
 		root->right_node = root->left_node = NULL;
 
 	}
 	else {
 		if (data < root->data)
-			root->left_node = Insert(&root->left_node, data);		//seeking
+			root->left_node = Insert(&root->left_node, data);		
 		else if (data > root->data)
 			root->right_node = Insert(&root->right_node, data);
 	}
@@ -143,7 +143,7 @@ listPointer FindMax(listPointer root0) {
 listPointer Delete(listPointer root, int data) {
 	listPointer temp;
 	if (data < root->data)
-		root->left_node = Delete(&root->left_node, data);			//seeking
+		root->left_node = Delete(&root->left_node, data);			
 	else if (data > root->data)
 		root->right_node = Delete(&root->right_node, data);
 	else {
@@ -170,15 +170,15 @@ listPointer Delete(listPointer root, int data) {
 }
 listPointer Find(listPointer root0, int data) {
 	if (root0 == NULL) {
-		printf("%d not there.\n", data);					//not found 
+		printf("%d not there.\n", data);					
 		return NULL;
 	}
 	if (data < root0->data)
-		return Find(root0->left_node, data);				//seeking
+		return Find(root0->left_node, data);				
 	else if (data > root0->data)
 		return Find(root0->right_node, data);
 	else if (data == root0->data) {
-		return root0;										//found 
+		return root0;										
 	}
 }
 listPointer NodeByRank(listPointer root, int rank) {
