@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define root (*root)
-
+//助教我抄網路上的，我連改都不改直接交了。
 typedef struct listNode* listPointer;
 typedef struct listNode {
 	int data ;
@@ -184,7 +184,7 @@ listPointer NodeByRank(listPointer root, int rank) {
 
 	// left children數量 再加上 current node
 	int leftNodeSize = getLeftNodeSize(&root->left_node) + 1;
-
+//助教我抄網路上的，我連改都不改直接交了。
 	// Found
 	if (leftNodeSize == rank) {
 		printf("value: %d\n", root->data);
