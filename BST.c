@@ -1,14 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #define root (*root)
 
 typedef struct listNode* listPointer;
 typedef struct listNode {
 	int data ;
-	listPointer parent_node;
 	listPointer left_node;
 	listPointer right_node;
 };
@@ -48,7 +44,7 @@ int i =0;
 	do {
 		int choice = 0;
 		int key = 0;
-		printf("\n\n1. ·s¼W¤@­Ó·skey­È\n2. §R°£¬Y­Ókey­È\n3. ´M§ä¬Y­Ókey­È\n4. ´M§ä²ÄN¤pªºkey­È\n5. ¿é¥Xkey­Èªº±Æ§Çµ²ªG\n6. µ²§ôµ{¦¡\n½Ð¿ï¾Ü¤W­z¥\¯à>");
+		printf("\n\n1. æ–°å¢žä¸€å€‹æ–°keyå€¼\n2. åˆªé™¤æŸå€‹keyå€¼\n3. å°‹æ‰¾æŸå€‹keyå€¼\n4. å°‹æ‰¾ç¬¬Nå°çš„keyå€¼\n5. è¼¸å‡ºkeyå€¼çš„æŽ’åºçµæžœ\n6. çµæŸç¨‹å¼\nè«‹é¸æ“‡ä¸Šè¿°åŠŸèƒ½>");
 		scanf("%d", &choice);
 		
 		switch (choice) {
@@ -164,7 +160,7 @@ listPointer Delete(listPointer root, int data) {
 			temp = root;
 			if (root->left_node == NULL)
 				root = root->right_node;				
-			if (root->right_node == NULL)
+			else if (root->right_node == NULL)
 				root = root->left_node;
 			free(temp);
 		}
@@ -186,7 +182,7 @@ listPointer Find(listPointer root0, int data) {
 }
 listPointer NodeByRank(listPointer root, int rank) {
 
-	// left children¼Æ¶q ¦A¥[¤W current node
+	// left childrenæ•¸é‡ å†åŠ ä¸Š current node
 	int leftNodeSize = getLeftNodeSize(&root->left_node) + 1;
 
 	// Found
@@ -196,7 +192,7 @@ listPointer NodeByRank(listPointer root, int rank) {
 	}
 		
 
-	// ¥Ø¼Ð¤j©ó·í«eleft node size¡A«h§äright children
+	// ç›®æ¨™å¤§æ–¼ç•¶å‰left node sizeï¼Œå‰‡æ‰¾right children
 	if (rank > leftNodeSize)
 		return NodeByRank(&root->right_node, rank - leftNodeSize);
 	else
